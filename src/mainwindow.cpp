@@ -99,12 +99,12 @@ MainWindow::MainWindow(TerminalConfig &cfg,
         setStyleSheet(QStringLiteral(QSS_DROP));
     }
     else {
-	if (Properties::Instance()->saveSizeOnExit) {
-	    resize(Properties::Instance()->mainWindowSize);
-	}
-	if (Properties::Instance()->savePosOnExit) {
-	    move(Properties::Instance()->mainWindowPosition);
-	}
+        if (Properties::Instance()->saveSizeOnExit && Properties::Instance()->mainWindowSize.isValid()) {
+            resize(Properties::Instance()->mainWindowSize);
+        }
+        if (Properties::Instance()->savePosOnExit && !Properties::Instance()->mainWindowPosition.isNull()) {
+            move(Properties::Instance()->mainWindowPosition);
+        }
         restoreState(Properties::Instance()->mainWindowState);
     }
 
